@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
 import express, { Express, Request, Response } from "express";
+import {prisma} from "../prisma/prisma"
 
 dotenv.config();
 
@@ -9,8 +10,27 @@ const port = process.env.PORT || 5000;
 app.use(express.json());
 
 app.get("/", (req: Request, res: Response) => {
-  res.send({ message: "hello World" });
-});
+  const {message } = req.body
+
+  if(!message) return res.status(400).send({error: "Message is required"})
+
+  res.send({message})
+})
+
+app.get("/snacks", async (req: Request, res: Response) => {
+  const {snack} = req.query
+
+  if(!snack) return res.status(400).send({error: "Snack is required"})
+
+  const snacks = await prisma.snack.findMany({
+    where:{
+      snack:{
+        equals: snack as string,
+      }
+    }
+  })
+  res.send(snacks)
+})
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
