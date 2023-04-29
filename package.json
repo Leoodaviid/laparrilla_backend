@@ -1,0 +1,18 @@
+{
+  "name": "laparrilla_backend",
+  "version": "1.0.0",
+  "description": "backend para website foodCommerce",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Leonardo David",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.16.2",
+    "nodemon": "^2.0.22",
+    "rimraf": "^5.0.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  }
+}
